@@ -16,8 +16,8 @@ type Query {
 
 type Mutation {
   createCoffee(createCoffeeInput: CreateCoffeeInput!): Coffee
-  deleteCoffee(id: Float!): Coffee
-  updateCoffee(id: Float!, updateCoffeeInput: UpdateCoffeeInput!): Coffee
+  deleteCoffee(id: ID!): Coffee
+  updateCoffee(id: ID!, updateCoffeeInput: UpdateCoffeeInput!): Coffee
 }
 
 input CreateCoffeeInput {

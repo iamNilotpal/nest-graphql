@@ -29,13 +29,15 @@ export class CoffeeResolver {
   }
 
   @Mutation(() => Coffee, { name: 'deleteCoffee', nullable: true })
-  async delete(@Args('id', ParseIntPipe) id: number): Promise<Coffee> {
+  async delete(
+    @Args('id', { type: () => ID }, ParseIntPipe) id: number,
+  ): Promise<Coffee> {
     return await this.coffeeService.delete(id);
   }
 
   @Mutation(() => Coffee, { name: 'updateCoffee', nullable: true })
   async update(
-    @Args('id', ParseIntPipe) id: number,
+    @Args('id', { type: () => ID }, ParseIntPipe) id: number,
     @Args('updateCoffeeInput') updateCoffeeInput: UpdateCoffeeInput,
   ) {
     return await this.coffeeService.update(id, updateCoffeeInput);
