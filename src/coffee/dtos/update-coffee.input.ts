@@ -1,8 +1,5 @@
-import { InputType } from '@nestjs/graphql';
+import { InputType, PartialType } from '@nestjs/graphql';
+import { CreateCoffeeInput } from './create-coffee.input';
 
 @InputType()
-export class UpdateCoffeeInput {
-  name?: string;
-  brand?: string;
-  flavours?: string[];
-}
+export class UpdateCoffeeInput extends PartialType(CreateCoffeeInput) {}
