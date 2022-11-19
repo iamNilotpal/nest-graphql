@@ -1,4 +1,5 @@
-import { Args, ID, Query, Resolver } from '@nestjs/graphql';
+import { Args, ID, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { CreateCoffeeInput } from './dtos/create-coffee.input';
 import { Coffee } from './entities/coffee.entity';
 
 @Resolver()
@@ -14,7 +15,17 @@ export class CoffeeResolver {
       id,
       brand: 'IDK',
       name: `Coffee #${id}`,
-      flavour: [],
+      flavours: [],
+    };
+  }
+
+  @Mutation(() => Coffee, { name: 'createCoffee', nullable: true })
+  async create(
+    @Args('createCoffeeInput') createCoffeeInput: CreateCoffeeInput,
+  ): Promise<Coffee> {
+    return {
+      id: Math.floor(Math.random() * 100),
+      ...createCoffeeInput,
     };
   }
 }
